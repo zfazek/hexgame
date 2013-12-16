@@ -8,6 +8,25 @@
 
 using namespace std;
 
+// Constructor
+// param s size of the side of the board
+HexGame::HexGame(int s) {
+    b = new Board(s);
+    ui = new ConsoleUi();
+    b->setNumSamples(1);
+    firstPlayer = new PlayerHuman();
+    secondPlayer = new PlayerComputer();
+    playerToMove = firstPlayer;
+}
+
+// Destructor
+HexGame::~HexGame() {
+    delete ui;
+    delete b;
+    delete firstPlayer;
+    delete secondPlayer;
+}
+
 // Returns if game is over or not
 // Checks if there is path from one side of the board to the opposite one
 // Cell by cell
@@ -23,11 +42,18 @@ bool HexGame::isGameEnd() const {
 // Main play loop
 void HexGame::play() {
     int moveIdx;
+    if (ui->askIfPlayerStarts()) {
+    } else {
+        Player* temp = firstPlayer;
+        firstPlayer = secondPlayer;
+        secondPlayer = temp;
+    }
     ui->printBoard(*b);
     while (true) {
         setPlayerToMove(firstPlayer);
         moveIdx = firstPlayer->makeMove(*ui, *b, true);
-        if (moveIdx == -1) {
+        if (moveIdx == Ui::QUIT) break;
+        if (moveIdx == Ui::UNDO) {
             Player* temp = secondPlayer;
             secondPlayer = firstPlayer;
             firstPlayer = temp;
@@ -42,7 +68,8 @@ void HexGame::play() {
         }
         setPlayerToMove(secondPlayer);
         moveIdx = secondPlayer->makeMove(*ui, *b, false);
-        if (moveIdx == -1) {
+        if (moveIdx == Ui::QUIT) break;
+        if (moveIdx == Ui::UNDO) {
             Player* temp = secondPlayer;
             secondPlayer = firstPlayer;
             firstPlayer = temp;
@@ -58,7 +85,7 @@ void HexGame::play() {
     }
 
     // Game is over!
-    exit(0);
+    return;
 }
 
 // Changes the next player
@@ -79,8 +106,8 @@ int main() {
     t.test();
 
     // init game
-    HexGame hx(7);
-    hx.getBoard()->setNumSamples(1000);
+    HexGame hx(3);
+    hx.getBoard()->setNumSamples(100);
     hx.getUi()->printWelcome();
 
     // and play

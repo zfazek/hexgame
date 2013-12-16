@@ -12,31 +12,20 @@ class HexGame {
     private:
     Ui* ui;
     Board* b;
+    Player* playerToMove;
+
 
     public:
 
     // Constructor
     // param s size of the side of the board
-    HexGame(int s) {
-        b = new Board(s);
-        ui = new ConsoleUi();
-        b->setNumSamples(1);
-        firstPlayer = new PlayerHuman();
-        secondPlayer = new PlayerComputer();
-        playerToMove = firstPlayer;
-    }
+    HexGame(int s);
 
     // Destructor
-    ~HexGame() {
-        delete ui;
-        delete b;
-        delete firstPlayer;
-        delete secondPlayer;
-    }
+    ~HexGame();
 
     Player* firstPlayer;
     Player* secondPlayer;
-    Player* playerToMove;
 
     Ui* getUi() const { return ui; };
 

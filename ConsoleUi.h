@@ -18,6 +18,7 @@ class ConsoleUi : public Ui {
         void printMove(const Board& b, int idx) const;
         void gameEnd(bool firstPlayer) const;
         int makeMove(Board& b, bool firstPlayer);
+        virtual bool askIfPlayerStarts();
 
 };
 

@@ -101,10 +101,10 @@ int ConsoleUi::makeMove(Board& b, bool firstPlayer) {
             cout << "Second player's move? (eg. a2, B3, U(ndo), Q(uit): ";
         cin >> line;
         if (line == "q" || line == "Q") {
-            exit(0);
+            return Ui::QUIT;
         } else if (line == "u" || line == "U") {
             if (b.remove()) {
-                return -1;
+                return Ui::UNDO;
             } else {
             }
         } else if (line.size() == 2 || line.size() == 3) {
@@ -122,4 +122,15 @@ int ConsoleUi::makeMove(Board& b, bool firstPlayer) {
         }
     }
     return idx;
+}
+
+bool ConsoleUi::askIfPlayerStarts() {
+    string line;
+    cout << "Do you want to start? (y/n) ";
+    cin >> line;
+    if (line == "y" || line == "Y") {
+        return true;
+    } else {
+        return false;
+    }
 }
