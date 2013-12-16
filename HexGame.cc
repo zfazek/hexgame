@@ -106,7 +106,7 @@ int main() {
     t.test();
 
     // init game
-    HexGame hx(3);
+    HexGame hx(7);
     hx.getBoard()->setNumSamples(100);
     hx.getUi()->printWelcome();
 
