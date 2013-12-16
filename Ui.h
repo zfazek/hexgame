@@ -9,6 +9,7 @@ class Ui {
     public:
         const int static UNDO = -1;
         const int static QUIT = -2;
+        virtual ~Ui() {};
         virtual void printWelcome() const = 0;
         virtual void printBoard(const Board& b) const = 0;
         virtual void printMove(const Board& b, int idx) const = 0;

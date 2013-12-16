@@ -10,7 +10,8 @@ class HexGame;
 class PlayerComputer : public Player {
 
     public:
-    int makeMove(Ui& ui, Board& b, bool firstPlayer);
+        ~PlayerComputer() {};
+        int makeMove(Ui& ui, Board& b, bool firstPlayer);
 };
 
 #endif

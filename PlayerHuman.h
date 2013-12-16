@@ -9,7 +9,8 @@
 class PlayerHuman : public Player {
 
     public:
-    int makeMove(Ui& ui, Board& b, bool firstPlayer);
+        ~PlayerHuman() {}
+        int makeMove(Ui& ui, Board& b, bool firstPlayer);
 };
 
 #endif

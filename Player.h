@@ -7,7 +7,8 @@
 class Player {
 
     public:
-    virtual int makeMove(Ui& ui, Board& b, bool firstPlayer) = 0;
+        virtual ~Player() {};
+        virtual int makeMove(Ui& ui, Board& b, bool firstPlayer) = 0;
 };
 
 #endif

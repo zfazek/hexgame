@@ -107,7 +107,7 @@ int main() {
 
     // init game
     HexGame hx(7);
-    hx.getBoard()->setNumSamples(100);
+    hx.getBoard()->setNumSamples(1000);
     hx.getUi()->printWelcome();
 
     // and play

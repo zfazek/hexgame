@@ -6,7 +6,7 @@ using namespace std;
 
 // makes "best" computer move
 int PlayerComputer::makeMove(Ui& ui, Board& b, bool firstPlayer) {
-    int bestMoveIdx;
+    int bestMoveIdx = -1;
     int maxWon = -1;
     int numWon;
     int temp;
