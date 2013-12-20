@@ -41,7 +41,7 @@ int Board::getHistorySize() const { return history.size(); }
 
 int Board::getNumEmptyNodes() const {
     int n = 0;
-    for (auto i : nodes)
+    for (const auto &i : nodes)
         if (i == Cell::EMPTY) ++n;
     return n;
 }
