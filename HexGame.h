@@ -10,10 +10,6 @@
 class HexGame {
 
     private:
-    Ui* ui;
-    Board* b;
-    Player* playerToMove;
-
 
     public:
 
@@ -26,6 +22,9 @@ class HexGame {
 
     Player* firstPlayer;
     Player* secondPlayer;
+    Player* playerToMove;
+    Ui* ui;
+    Board* b;
 
     Ui* getUi() const { return ui; };
 

@@ -51,7 +51,7 @@ void HexGame::play() {
     ui->printBoard(*b);
     while (true) {
         setPlayerToMove(firstPlayer);
-        moveIdx = firstPlayer->makeMove(*ui, *b, true);
+        moveIdx = playerToMove->makeMove(*ui, *b, true);
         if (moveIdx == Ui::QUIT) break;
         if (moveIdx == Ui::UNDO) {
             Player* temp = secondPlayer;
@@ -99,14 +99,15 @@ void HexGame::setPlayerToMove(Player* p) {
 }
 
 // MAIN
-int main() {
+int main(int argc, char** argv) {
 
     // test first
     Test t;
     t.test();
+    if (argc > 1) return 0;
 
     // init game
-    HexGame hx(7);
+    HexGame hx(9);
     hx.getBoard()->setNumSamples(1000);
     hx.getUi()->printWelcome();
 

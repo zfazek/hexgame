@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Test.h"
 #include "HexGame.h"
+#include <map>
 
 using namespace std;
 
@@ -318,6 +319,41 @@ void Test::test() {
         assert(Cell::X == r[6]);
         assert(Cell::EMPTY == r[7]);
         assert(Cell::O == r[8]);
+    }
+
+    /*
+     * Add bad move test
+     * The good move (4) likelihood is about 50% with pure Monte Carlo
+     * It should be almost 100% with MCTS. Let's see!
+     */
+    {
+        HexGame hx(5);
+        hx.getBoard()->setNumSamples(1000);
+        Board b(5);
+        b.initBoard();
+        vector<Cell> nodes = {
+            Cell::X, Cell::EMPTY, Cell::X, Cell::X, Cell::EMPTY,
+            Cell::X, Cell::X, Cell::O, Cell::EMPTY, Cell::EMPTY,
+            Cell::O, Cell::O, Cell::O, Cell::X, Cell::O,
+            Cell::O, Cell::X, Cell::X, Cell::O, Cell::EMPTY,
+            Cell::O, Cell::X, Cell::O, Cell::EMPTY, Cell::EMPTY
+        };
+        hx.getBoard()->setNodes(nodes);
+        hx.setPlayerToMove(hx.secondPlayer);
+        map<int, int> stat;
+        int N = 1000;
+        for (int i = 0; i < N; i++) {
+            int moveIdx = hx.playerToMove->makeMove(*hx.ui, *hx.b, false);
+            stat[moveIdx]++;
+        }
+        /*
+        hx.ui->printBoard(*hx.b);
+        for (const auto& s : stat) {
+            printf("%2d: %3d\n", s.first, s.second);
+        }
+        printf("move 4: %.0f%%\n", 100 * (double)stat[4] / N);
+        */
+        assert(100 * (double)stat[4] / N > 40);
     }
 
     cout << endl;
