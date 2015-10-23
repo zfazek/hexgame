@@ -318,7 +318,8 @@ void Test::test() {
         assert(Cell::O == r[5]);
         assert(Cell::X == r[6]);
         assert(Cell::EMPTY == r[7]);
-        assert(Cell::O == r[8]);
+        assert(Cell::O == r[7]);
+        //assert(Cell::O == r[8]);
     }
 
     /*
@@ -357,4 +358,10 @@ void Test::test() {
     }
 
     cout << endl;
+}
+
+
+int main(int argc, char** argv) {
+    Test test;
+    test.test();
 }

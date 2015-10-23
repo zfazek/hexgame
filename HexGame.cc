@@ -98,22 +98,3 @@ void HexGame::setPlayerToMove(Player* p) {
     playerToMove = p; 
 }
 
-// MAIN
-int main(int argc, char** argv) {
-
-    // test first
-    Test t;
-    t.test();
-    if (argc > 1) return 0;
-
-    // init game
-    HexGame hx(9);
-    hx.getBoard()->setNumSamples(1000);
-    hx.getUi()->printWelcome();
-
-    // and play
-    hx.play();
-
-    return 0;
-}
-
