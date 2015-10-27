@@ -1,6 +1,7 @@
 #include <set>
 #include <map>
 #include <vector>
+#include <cstdlib>
 #include "Board.h"
 
 using namespace std;
