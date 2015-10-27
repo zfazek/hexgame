@@ -1,7 +1,7 @@
 set (CMAKE_CXX_FLAGS "-std=c++11 -O2 -Werror -Wall")
 
 add_executable(hexgame
-    hexgame.cc
+    main.cc
     Board.cc
     ConsoleUi.cc
     PlayerHuman.cc
