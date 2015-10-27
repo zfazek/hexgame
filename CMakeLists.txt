@@ -21,3 +21,4 @@ add_executable(test_hexgame
 
 enable_testing()
 add_test(test_hexgame test_hexgame)
+
